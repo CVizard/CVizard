@@ -23,9 +23,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: checking out
+        uses: actions/checkout@v3
       - name: Set up Docker Buildx
-      - uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v2
       
       - name: build and test python
         working-directory: ./backend/textCleaner
@@ -36,10 +37,10 @@ jobs:
   build_and_test_java_services:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: checkout code
+        uses: actions/checkout@v3
       - name: Set up Docker Buildx
-      - uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v2
       
       - name: build and test pdf aggregator
         working-directory: ./backend/pdfConverter
@@ -57,9 +58,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: checkout code
+        name: checkout code
       - name: Set up Docker Buildx
-      - uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v2
       
       - name: build and test frontend
         working-directory: ./frontend

@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build_and_test_text_cleaner:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -24,13 +24,59 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Set up Docker Buildx
+      - uses: docker/setup-buildx-action@v2
+      
+      - name: build and test python
+        working-directory: ./backend/textCleaner
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          docker build -t textCleaner .
+          docker run textCleaner -d pytest testing/
+  
+  build_and_test_java_services:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: checkout code
+      - name: Set up Docker Buildx
+      - uses: docker/setup-buildx-action@v2
+      
+      - name: build and test pdf aggregator
+        working-directory: ./backend/pdfConverter
+        run: |
+          docker build -t pdfConverter . 
+          docker run -it --rm --name springboot-test pdfConverter ./mvnw test
+      
+      - name: build and test json resume
+        working-directory: ./backend/jsonResume
+        run: |
+          docker build -t jsonResume . 
+          docker run -it --rm --name springboot-test jsonResume ./mvnw test
+  
+  build_and_test_frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: checkout code
+      - name: Set up Docker Buildx
+      - uses: docker/setup-buildx-action@v2
+      
+      - name: build and test frontend
+        working-directory: ./frontend
+        run: |
+          docker build -t frontend -f Dockerfile.build .
+          docker build -t test -f Dockerfile.test .
+      
+          
+        
+        
+        
+    
+          
+      
+    
+        
+          
+      
+
+    

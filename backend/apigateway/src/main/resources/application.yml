@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: pdf
+          uri: http://pdf:8081

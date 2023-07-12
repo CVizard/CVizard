@@ -16,9 +16,7 @@ import java.util.ArrayList;
 
 @Service
 public class PdfService {
-//PdfServiceż    DocumentRecognitionSettings settings = new DocumentRecognitionSettings(1);
-
     public void getPdfText(File file) throws IOException, TesseractException {
-        
+
     }
 }

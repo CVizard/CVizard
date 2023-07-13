@@ -79,13 +79,19 @@ jobs:
       - name: install ssh
         run: sudo apt-get install -y ssh
 
-      - name: setup ssh
+      - name: Create SSH key
         run: |
-          mkdir -p ~/.ssh
-          echo "$MACHINE_ACCESS" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $IP_ADDRESS >> ~/.ssh/known_hosts
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+
 
       - name: Deploy to On-Premises Machine
         run: |
-          ssh $HOSTNAME@$IP_ADDRESS'cd $DEPLOYMENT_ROUTE; ./deploy.sh
+          ssh -i $SSH_KEY_PATH januszsoft@januszsoft.pl; cd /home/januszsoft/cvizard; ./deploy.sh

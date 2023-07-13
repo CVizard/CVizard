@@ -1,0 +1,13 @@
+settings:
+  gpt-api-key: ""
+  kafka:
+    topics:
+      cleaned-text: "cleaned-text"
+  model: "gpt-3.5-turbo"
+  prompt: 'you have here plain text from cv: [RESUME TEXT], analyse this and return me only this JSON template:  { "Education": { [ "institution": "", "area": "", "studyType": "", "startDate": "", "endDate": "" ] }, "Certificate": { [ "name": "", "date": "", "issuer": "" ] }, "Skill": { [ "name": "", "level": "", "keywords": [] ] }, "Language": { [ "language": "", "level": "" ] }, "Project": { [ "name": "", "startDate": "", "endDate": "", "summary": "" ] }, "Interest": { [ "name": "", "keywords": [] ] } } with approximately parsed data from the given text'
+
+server:
+  port: 8082
+spring:
+  kafka:
+    bootstrap-servers: "localhost:29092"

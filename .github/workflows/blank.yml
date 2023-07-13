@@ -87,8 +87,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            git pull origin main
-            ./deploy.sh
+            ls -la
 
 
 

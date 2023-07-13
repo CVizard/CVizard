@@ -8,6 +8,13 @@ services:
     ports:
       - 22181:2181
   
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
   kafka:
     image: confluentinc/cp-kafka:latest
     depends_on:
@@ -44,3 +51,13 @@ services:
       - kafka
       - zookeeper
       - fastapi
+
+  frontend:
+    build:
+      context: ./frontend/cvizard
+      dockerfile: Dockerfile.dev
+    ports:
+      - '5173:5173'
+    depends_on:
+      - kafka
+    container_name: frontend

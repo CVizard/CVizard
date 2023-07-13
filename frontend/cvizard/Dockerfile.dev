@@ -1,0 +1,16 @@
+FROM node:16-alpine
+
+EXPOSE 5173
+
+
+WORKDIR /app
+
+COPY package.json package.json
+
+RUN npm install
+
+RUN npm install axios
+
+COPY . . 
+
+CMD ["npm", "run", "dev"]

@@ -32,3 +32,15 @@ services:
     depends_on:
       - kafka
       - zookeeper
+
+  textcleaner: 
+    build: ./backend/textCleaner
+    command:  python3 main.py
+    volumes:
+      - ./backend/textCleaner:/app
+    ports:
+      - 8001:8000
+    depends_on:
+      - kafka
+      - zookeeper
+      - fastapi

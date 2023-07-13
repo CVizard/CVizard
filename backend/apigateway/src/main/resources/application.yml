@@ -1,3 +1,14 @@
+server:
+  port: 443
+  ssl:
+    enabled: true
+    key-alias: minionki
+    key-store-password:
+    key-store: classpath:scg-minionki.p12
+    key-store-type: PKCS12
+    trust-store: classpath:keystore/minionki.p12
+    trust-store-password: 
+
 spring:
   application:
     name: apigateway
@@ -5,4 +16,4 @@ spring:
     gateway:
       routes:
         - id: pdf
-          uri: http://pdf:8081
+          uri: http://localhost:8081

@@ -1,0 +1,5 @@
+spacy==3.6.0
+kafka-python==2.0.2
+pl-core-news-lg @ https://github.com/explosion/spacy-models/releases/download/pl_core_news_lg-3.6.0/pl_core_news_lg-3.6.0-py3-none-any.whl#sha256=49f7bd027d4a381ca3b8acec1dd0338cd9f96d278b36a34a7d722bf7cfae3dec
+en-core-web-lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.6.0/en_core_web_lg-3.6.0-py3-none-any.whl#sha256=9012584a8fcf5bc61bedb13a4b511fb81ffff9f770958ee06366671be10632e9
+StrEnum==0.4.9

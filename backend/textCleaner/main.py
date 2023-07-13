@@ -2,9 +2,9 @@ from kafka_connector import connect_kafka_producer, connect_kafka_consumer
 from text_cleaner import anonymize_text, Engine
 
 
-INPUT_TOPIC_NAME = 'input'
-OUTPUT_TOPIC_NAME = 'output'
-BOOTSTRAP_SERVERS = ['localhost:9092']
+INPUT_TOPIC_NAME = 'pdf-text'
+OUTPUT_TOPIC_NAME = 'cleaned-text'
+BOOTSTRAP_SERVERS = ['kafka:29092']
 
 
 def main():
@@ -15,3 +15,7 @@ def main():
         text = msg.value.decode('utf-8')
         anonymized_text = anonymize_text(text, Engine.PL)
         producer.send(OUTPUT_TOPIC_NAME, anonymized_text.encode('utf-8'))
+
+
+if __name__ == '__main__':
+    main()

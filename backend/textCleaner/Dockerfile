@@ -11,7 +11,7 @@ RUN apt-get update \
   && apt-get clean
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements-dev.txt
+RUN pip install -r requirements.txt
 
 COPY . . 
 

@@ -6,4 +6,4 @@ def connect_kafka_producer(bootstrap_servers: list[str]) -> KafkaProducer:
 
 
 def connect_kafka_consumer(bootstrap_servers: list[str], topic_name: str) -> KafkaConsumer:
-    return KafkaConsumer(topic_name, bootstrap_servers=bootstrap_servers)
+    return KafkaConsumer(topic_name, bootstrap_servers=bootstrap_servers, api_version=(0, 10))

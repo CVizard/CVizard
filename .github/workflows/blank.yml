@@ -84,7 +84,7 @@ jobs:
         with:
           host: januszsoft.pl
           username: januszsoft
-          password: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: whoami
 

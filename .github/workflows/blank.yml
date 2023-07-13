@@ -82,11 +82,13 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: januszsoft.pl
-          username: januszsoft
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: ./deploy.sh
+          port: ${{ secrets.PORT }}
+          script: |
+            git pull origin main
+            ./deploy.sh
 
 
 

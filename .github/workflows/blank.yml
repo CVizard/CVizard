@@ -29,7 +29,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       
       - name: build and test python
-        working-directory: ./backend/textCleaner
+        working-directory: ./backend/textcleaner
         run: |
           docker build -t textCleaner .
           docker run textCleaner -d pytest testing/
@@ -43,13 +43,13 @@ jobs:
         uses: docker/setup-buildx-action@v2
       
       - name: build and test pdf aggregator
-        working-directory: ./backend/pdfConverter
+        working-directory: ./backend/pdfconverter
         run: |
           docker build -t pdfConverter . 
           docker run -it --rm --name springboot-test pdfConverter ./mvnw test
       
       - name: build and test json resume
-        working-directory: ./backend/jsonResume
+        working-directory: ./backend/jsonresume
         run: |
           docker build -t jsonResume . 
           docker run -it --rm --name springboot-test jsonResume ./mvnw test

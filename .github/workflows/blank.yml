@@ -79,20 +79,14 @@ jobs:
       - name: install ssh
         run: sudo apt-get install -y ssh
 
-      - name: Create SSH key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ../private.key
-          sudo chmod 600 ../private.key
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        shell: bash
-        env:
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: januszsoft.pl
+          username: januszsoft
+          password: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: whoami
 
 
-      - name: Deploy to On-Premises Machine
-        run: |
-          ssh -i $SSH_KEY_PATH januszsoft@januszsoft.pl '/deploy.sh'
 

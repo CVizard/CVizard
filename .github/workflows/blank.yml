@@ -94,5 +94,5 @@ jobs:
 
       - name: Deploy to On-Premises Machine
         run: |
-          ssh -i $SSH_KEY_PATH januszsoft@januszsoft.pl "cd /home/januszsoft/cvizard && ./deploy.sh"
+          ssh -i $SSH_KEY_PATH januszsoft@januszsoft.pl '/deploy.sh'
 

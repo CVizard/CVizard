@@ -32,7 +32,7 @@ jobs:
         working-directory: ./backend/pdf
         run: |
           docker build -t textcleaner .
-          docker run textcleaner -d pytest testing/
+          docker run -it textcleaner pytest testing/
   
   build_and_test_java_services:
     runs-on: ubuntu-latest

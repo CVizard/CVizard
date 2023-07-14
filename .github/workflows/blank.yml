@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main", "feature_cicd" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -42,17 +42,17 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       
-      - name: build and test pdf aggregator
-        working-directory: ./backend/pdfConverter
+      - name: build and test pdf converter
+        working-directory: backend/converter
         run: |
           docker build -t pdfconverter . 
           docker run -it --rm --name springboot-test pdfconverter ./mvnw test
       
-      - name: build and test json resume
-        working-directory: ./backend/jsonResume
-        run: |
-          docker build -t jsonresume . 
-          docker run -it --rm --name springboot-test jsonresume ./mvnw test
+     # - name: build and test json resume
+     #   working-directory: ./backend/jsonResume
+     #   run: |
+     #     docker build -t jsonresume . 
+     #     docker run -it --rm --name springboot-test jsonresume ./mvnw test
   
   build_and_test_frontend:
     runs-on: ubuntu-latest

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class KafkaListeners {
     private final ResumeService resumeService;
-    @KafkaListener(topics = "${settings.kafka.topics.cleaned-text}", groupId = "foo")
+    @KafkaListener(topics = "${settings.kafka.topics.cleaned-text}", groupId = "oo")
     void listener(String data){
         resumeService.resumeConverter(data);
     }

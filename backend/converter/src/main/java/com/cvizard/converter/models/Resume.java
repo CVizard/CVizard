@@ -1,51 +1,84 @@
 package com.cvizard.converter.models;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@NoArgsConstructor
+@Data
 public class Resume {
+//    @JsonProperty(value = "Work")
     private List<Work> work;
+//    @JsonProperty(value = "Education")
     private List<Education> education;
+//    @JsonProperty(value = "Certificate")
     private List<Certificate> certificates;
+//    @JsonProperty(value = "Skill")
     private List<Skill> skills;
+//    @JsonProperty(value = "Language")
     private List<Language> languages;
+//    @JsonProperty(value = "Project")
     private List<Project> projects;
+//    @JsonProperty(value = "Interest")
     private List<Interest> interests;
-    static private class Work{
+    
+    @NoArgsConstructor
+    @Data
+    public static class Work{
         private String name;
         private String position;
-        private LocalDate startDate;
-        private LocalDate endDate;
+        private String startDate;
+        private String endDate;
         private String summary;
     }
-    static private class Education{
+    
+    @NoArgsConstructor
+    @Data
+    public static class Education{
         private String institution;
         private String area;
         private String studyType;
-        private LocalDate startDate;
-        private LocalDate endDate;
+        private String startDate;
+        private String endDate;
     }
-    static private class Certificate{
+    
+    @NoArgsConstructor
+    @Data
+    public static class Certificate{
         private String name;
-        private LocalDate date;
+        private String date;
         private String issuer;
     }
-    static private class Skill{
+    
+    @NoArgsConstructor
+    @Data
+    public static class Skill{
         private String name;
         private String level;
         private List<String> keywords;
     }
-    static private class Language{
+    
+    @NoArgsConstructor
+    @Data
+    public static class Language{
         private String language;
         private String level;
     }
-    static private class Project{
+    
+    @NoArgsConstructor
+    @Data
+    public static class Project{
         private String name;
-        private LocalDate startDate;
-        private LocalDate endDate;
+        private String startDate;
+        private String endDate;
         private String summary;
     }
-    static private class Interest{
+    
+    @NoArgsConstructor
+    @Data
+    public static class Interest{
         private String name;
         private List<String> keywords;
     }

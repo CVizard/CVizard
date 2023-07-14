@@ -1,20 +1,21 @@
 from kafka_connector import connect_kafka_producer, connect_kafka_consumer
 from text_cleaner import anonymize_text, Engine
+import os
 
 
-INPUT_TOPIC_NAME = 'pdf-text'
-OUTPUT_TOPIC_NAME = 'cleaned-text'
-BOOTSTRAP_SERVERS = ['kafka:29092']
+input_topic_name = os.environ['PDF_TEXT_TOPIC']
+output_topic_name = os.environ['CLEANED_TEXT_TOPIC']
+bootstrap_servers = [os.environ['BOOTSTRAP_SERVERS']]
 
 
 def main():
-    producer = connect_kafka_producer(BOOTSTRAP_SERVERS)
-    consumer = connect_kafka_consumer(BOOTSTRAP_SERVERS, INPUT_TOPIC_NAME)
+    producer = connect_kafka_producer(bootstrap_servers)
+    consumer = connect_kafka_consumer(bootstrap_servers, input_topic_name)
 
     for msg in consumer:
         text = msg.value.decode('utf-8')
         anonymized_text = anonymize_text(text, Engine.PL)
-        producer.send(OUTPUT_TOPIC_NAME, anonymized_text.encode('utf-8'))
+        producer.send(output_topic_name, anonymized_text.encode('utf-8'))
 
 
 if __name__ == '__main__':

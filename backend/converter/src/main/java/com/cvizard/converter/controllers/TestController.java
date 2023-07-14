@@ -5,13 +5,14 @@ import com.cvizard.converter.ChatGPTResponse;
 import com.cvizard.converter.Message;
 import com.cvizard.converter.Test;
 import com.cvizard.converter.interfaces.ChatGPTClient;
+import com.cvizard.converter.models.Resume;
+import com.cvizard.converter.services.ResumeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/test")
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     private final ChatGPTClient chatGPTClient;
     private final KafkaTemplate<String,String> template;
+    private final ResumeService resumeService;
     @Value(value = "${settings.gpt-api-key}")
     private String apiKey;
     @PostMapping("gpt")
@@ -30,5 +32,9 @@ public class TestController {
     @PostMapping("topic")
     public void postToKafka(@RequestBody Message message){
         template.send("cleaned-text",message.getContent());
+    }
+    @GetMapping("")
+    public Resume resumeTest(){
+        return resumeService.resumeConverter("chuj", UUID.randomUUID().toString());
     }
 }

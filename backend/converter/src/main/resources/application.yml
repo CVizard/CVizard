@@ -4,10 +4,19 @@ settings:
     topics:
       cleaned-text: "cleaned-text"
   model: "gpt-3.5-turbo"
-  prompt: 'you have here plain text from cv: [RESUME TEXT], analyse this and return me only this JSON template:  { "Education": { [ "institution": "", "area": "", "studyType": "", "startDate": "", "endDate": "" ] }, "Certificate": { [ "name": "", "date": "", "issuer": "" ] }, "Skill": { [ "name": "", "level": "", "keywords": [] ] }, "Language": { [ "language": "", "level": "" ] }, "Project": { [ "name": "", "startDate": "", "endDate": "", "summary": "" ] }, "Interest": { [ "name": "", "keywords": [] ] } } with approximately parsed data from the given text'
+  prompt: 'you have here plain text from cv: “”, analyse this and return me only this JSON template:  { "education": { [ "institution": "", "area": "", "studyType": "", "startDate": "", "endDate": "" ] }, "certificate": { [ "name": "", "date": "", "issuer": "" ] }, "skill": { [ "name": "", "level": "", "keywords": [] ] }, "language": { [ "language": "", "level": "" ] }, "project": { [ "name": "", "startDate": "", "endDate": "", "summary": "" ] }, "interest": { [ "name": "", "keywords": [] ] } } with approximately parsed data from the given text, if you find any personal information don’t return it in the response '
 
 server:
-  port: 8082
+  port: 8083
 spring:
   kafka:
     bootstrap-servers: "localhost:29092"
+  data:
+    mongodb:
+      host: 'localhost'
+      port: 27017
+      username: "root"
+      password: "example"
+      database: "cvizard"
+      authentication-database: "admin"
+      uuid-representation: standard

@@ -14,8 +14,9 @@ def main():
 
     for msg in consumer:
         text = msg.value.decode('utf-8')
+        key = msg.key
         anonymized_text = anonymize_text(text, Engine.PL)
-        producer.send(output_topic_name, anonymized_text.encode('utf-8'))
+        producer.send(output_topic_name, value=anonymized_text.encode('utf-8'), key=key)
 
 
 if __name__ == '__main__':

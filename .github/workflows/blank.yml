@@ -46,7 +46,8 @@ jobs:
         working-directory: backend/converter
         run: |
           docker build -t pdfconverter . 
-          docker run --rm --name springboot-test pdfconverter ./mvnw test
+          mvn test
+     #    docker run --rm --name springboot-test pdfconverter ./mvnw test
 
      # - name: build and test json resume
      #   working-directory: ./backend/jsonResume

@@ -39,6 +39,9 @@ services:
     depends_on:
       - kafka
       - zookeeper
+    environment:
+      - PDF_TEXT_TOPIC=pdf-text
+      - BOOTSTRAP_SERVERS=kafka:29092
 
   textcleaner: 
     build: ./backend/textCleaner
@@ -51,13 +54,17 @@ services:
       - kafka
       - zookeeper
       - fastapi
+    environment:
+        - PDF_TEXT_TOPIC=pdf-text
+        - CLEANED_TEXT_TOPIC=cleaned-text
+        - BOOTSTRAP_SERVERS=kafka:29092
 
   frontend:
     build:
       context: ./frontend/cvizard
       dockerfile: Dockerfile.dev
     ports:
-      - '5173:5173'
+      - 5173:5173
     depends_on:
       - kafka
     container_name: frontend

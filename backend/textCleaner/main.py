@@ -3,9 +3,9 @@ from text_cleaner import anonymize_text, Engine
 import os
 
 
-input_topic_name = os.environ.get('INPUT_TOPIC_NAME')
-output_topic_name = os.environ.get('OUTPUT_TOPIC_NAME')
-bootstrap_servers = [os.environ.get('BOOTSTRAP_SERVERS')]
+input_topic_name = os.environ['PDF_TEXT_TOPIC']
+output_topic_name = os.environ['CLEANED_TEXT_TOPIC']
+bootstrap_servers = [os.environ['BOOTSTRAP_SERVERS']]
 
 
 def main():

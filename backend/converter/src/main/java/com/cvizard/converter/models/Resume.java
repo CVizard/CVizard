@@ -14,7 +14,7 @@ import java.util.UUID;
 @Document("cvizard")
 public class Resume {
     @Id
-    private UUID id;
+    private String id;
     @JsonProperty(value = "Work")
     private List<Work> work;
     @JsonProperty(value = "Education")

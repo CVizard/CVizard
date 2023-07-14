@@ -14,7 +14,7 @@ import java.util.UUID;
 public class KafkaListeners {
     private final ResumeService resumeService;
     @KafkaListener(topics = "${settings.kafka.topics.cleaned-text}", groupId = "ooo")
-    void listener(@Payload String data, @Header UUID key){
+    void listener(@Payload String data, @Header String key){
         resumeService.resumeConverter(data, key);
     }
 }

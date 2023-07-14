@@ -56,7 +56,7 @@ jobs:
       - uses: actions/setup-java@v3
       
       - name: Set up Maven
-        uses: thermofisher/setup-maven@v1.0.0
+        uses: stCarolas/setup-maven@v4.5
         with:
           maven-version: 3.8.2
         

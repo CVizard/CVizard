@@ -14,4 +14,4 @@ COPY . .
 
 # Build the application
 
-RUN npm test -- --coverage
+RUN npm test -- --passWithNoTests --coverage

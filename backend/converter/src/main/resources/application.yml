@@ -19,3 +19,4 @@ spring:
       password: "example"
       database: "cvizard"
       authentication-database: "admin"
+      uuid-representation: standard

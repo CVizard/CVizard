@@ -3,25 +3,31 @@ package com.cvizard.converter.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.UUID;
 
 @NoArgsConstructor
 @Data
+@Document("cvizard")
 public class Resume {
-//    @JsonProperty(value = "Work")
+    @Id
+    private UUID id;
+    @JsonProperty(value = "Work")
     private List<Work> work;
-//    @JsonProperty(value = "Education")
+    @JsonProperty(value = "Education")
     private List<Education> education;
-//    @JsonProperty(value = "Certificate")
+    @JsonProperty(value = "Certificate")
     private List<Certificate> certificates;
-//    @JsonProperty(value = "Skill")
+    @JsonProperty(value = "Skill")
     private List<Skill> skills;
-//    @JsonProperty(value = "Language")
+    @JsonProperty(value = "Language")
     private List<Language> languages;
-//    @JsonProperty(value = "Project")
+    @JsonProperty(value = "Project")
     private List<Project> projects;
-//    @JsonProperty(value = "Interest")
+    @JsonProperty(value = "Interest")
     private List<Interest> interests;
     
     @NoArgsConstructor

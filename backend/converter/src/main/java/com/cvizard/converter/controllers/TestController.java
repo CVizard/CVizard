@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/test")
 @RequiredArgsConstructor
@@ -33,6 +35,6 @@ public class TestController {
     }
     @GetMapping("")
     public Resume resumeTest(){
-        return resumeService.resumeConverter("chuj");
+        return resumeService.resumeConverter("chuj", UUID.randomUUID());
     }
 }

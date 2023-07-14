@@ -56,7 +56,7 @@ jobs:
       - uses: actions/setup-java@v3
       
       - name: Set up Maven
-        uses: thermofisher/setup-maven@v1.0.0
+        uses: stCarolas/setup-maven@v4.5
         with:
           maven-version: 3.8.2
         
@@ -85,7 +85,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: ["build_and_test_frontend", "build_and_test_java_services", "build_and_test_text_cleaner"]
+    needs: ["build_and_test_frontend", "build_java_services", "test_java_services", "build_and_test_text_cleaner"]
     steps:
       - name: checkout code
         uses: actions/checkout@v3

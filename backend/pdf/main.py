@@ -14,8 +14,8 @@ from exceptions import KafkaUploadException
 import os
 
 
-bootstrap_servers = os.environ.get('BOOTSTRAP_SERVERS')
-topic_name = os.environ.get('PDF_TEXT_TOPIC')
+bootstrap_servers = os.environ['BOOTSTRAP_SERVERS']
+topic_name = os.environ['PDF_TEXT_TOPIC']
 
 
 app = FastAPI()

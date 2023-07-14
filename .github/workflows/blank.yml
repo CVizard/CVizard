@@ -43,7 +43,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       
       - name: build and test pdf converter
-        working-directory: ./backend/converter
+        working-directory: backend/converter
         run: |
           docker build -t pdfconverter . 
           docker run -it --rm --name springboot-test pdfconverter ./mvnw test

@@ -10,9 +10,9 @@ export function FileUploader() {
 
   const onFileUpload = () => {
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("pdf_file", file);
     axios
-      .post("http://localhost:8080/api", formData)
+      .post("http:localhost:8081/api", formData)
       .then((response) => {
         console.log(response);
       })

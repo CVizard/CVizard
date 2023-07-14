@@ -59,12 +59,23 @@ services:
         - CLEANED_TEXT_TOPIC=cleaned-text
         - BOOTSTRAP_SERVERS=kafka:29092
 
-  frontend:
+  # frontend:
+  #   build:
+  #     context: ./frontend/cvizard
+  #     dockerfile: Dockerfile.dev
+  #   ports:
+  #     - '5173:5173'
+  #   depends_on:
+  #     - kafka
+  #   container_name: frontend
+
+
+  frontend-prod:
     build:
       context: ./frontend/cvizard
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.prod
     ports:
       - 5173:5173
     depends_on:
       - kafka
-    container_name: frontend
+    container_name: frontend-prod

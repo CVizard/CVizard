@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "main", "cicd_for_java" ]
   pull_request:
     branches: [ "main" ]
 
@@ -46,6 +46,7 @@ jobs:
         working-directory: backend/converter
         run: |
           docker build -t pdfconverter . 
+          ls -la
           docker run --rm --name springboot-test pdfconverter ./mvnw test
 
      # - name: build and test json resume

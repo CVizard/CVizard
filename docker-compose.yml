@@ -52,7 +52,7 @@ services:
     volumes:
       - ./backend/textCleaner:/app
     ports:
-      - 8001:8000
+      - 8000:8001
     depends_on:
       - kafka
       - zookeeper
@@ -87,7 +87,7 @@ services:
       context: ./backend/apigateway
       dockerfile: Dockerfile
     ports:
-      - 8080:8080
+      - 8080:8081
     container_name: apigateway
 
   pdfcreator:

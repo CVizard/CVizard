@@ -35,6 +35,6 @@ public class TestController {
     }
     @GetMapping("")
     public Resume resumeTest(){
-        return resumeService.resumeConverter("chuj", UUID.randomUUID().toString());
+        return resumeService.resumeConverter("****", UUID.randomUUID().toString());
     }
 }

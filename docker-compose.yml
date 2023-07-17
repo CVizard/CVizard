@@ -56,7 +56,6 @@ services:
     depends_on:
       - kafka
       - zookeeper
-      - fastapi
     environment:
         - PDF_TEXT_TOPIC=pdf-text
         - CLEANED_TEXT_TOPIC=cleaned-text
@@ -90,3 +89,22 @@ services:
     ports:
       - 8080:8080
     container_name: apigateway
+
+  pdfcreator:
+    build:
+      context: ./backend/pdfcreator
+      dockerfile: Dockerfile
+    ports:
+      - '8084:8084'
+    depends_on:
+      - kafka
+    container_name: pdfcreator
+  converter:
+    build:
+      context: ./backend/pdfcreator
+      dockerfile: Dockerfile
+    ports:
+      - '8083:8083'
+    depends_on:
+      - kafka
+    container_name: pdfcreator

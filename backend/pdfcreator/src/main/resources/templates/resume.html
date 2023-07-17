@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Resume</title>
+</head>
+<body>
+<h1>Work Experience</h1>
+<div th:each="work : ${resume.work}">
+    <h6 th:text="${work.name}"></h6>
+    <p th:text="${work.position}"></p>
+    <p th:text="${work.startDate} + ' - ' + ${work.endDate}"></p>
+    <p th:text="${work.summary}"></p>
+</div>
+
+<h1>Education</h1>
+<div th:each="education : ${resume.education}">
+    <h6 th:text="${education.institution}"></h6>
+    <p th:text="${education.area}"></p>
+    <p th:text="${education.studyType}"></p>
+    <p th:text="${education.startDate} + ' - ' + ${education.endDate}"></p>
+</div>
+
+<h1>Certificates</h1>
+<div th:each="certificate : ${resume.certificates}">
+    <h6 th:text="${certificate.name}"></h6>
+    <p th:text="${certificate.date}"></p>
+    <p th:text="${certificate.issuer}"></p>
+</div>
+
+<h1>Skills</h1>
+<div th:each="skill : ${resume.skills}">
+    <p th:text="${skill.name}"></p>
+    <p th:text="${skill.level}"></p>
+    <p th:each="keyword : ${skill.keywords}" th:text="${keyword}"></p>
+</div>
+
+<h1>Languages</h1>
+<div th:each="language : ${resume.languages}">
+    <p th:text="${language.language}"></p>
+    <p th:text="${language.level}"></p>
+</div>
+
+<h1>Projects</h1>
+<div th:each="project : ${resume.projects}">
+    <p th:text="${project.name}"></p>
+    <p th:text="${project.summary}"></p>
+    <p th:text="${project.startDate} + ' - ' + ${project.endDate}"></p>
+</div>
+
+
+<h1>Interests</h1>
+<div th:each="interests : ${resume.interests}">
+    <h6 th:text="${interests.name}"></h6>
+    <p th:each="keyword : ${interests.keywords}" th:text="${keyword}"></p>
+</div>
+</body>
+</html>

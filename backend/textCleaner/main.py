@@ -1,4 +1,3 @@
-from kafka_connector import connect_kafka_producer, connect_kafka_consumer
 from text_cleaner import anonymize_text, Engine
 import os
 from kafka import KafkaProducer, KafkaConsumer

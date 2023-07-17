@@ -30,7 +30,7 @@ public class resumeController {
     @Qualifier("webApplicationContext")
     private final ResourceLoader resourceLoader;
 
-    @GetMapping("/1")
+    @GetMapping("/templates")
     public Resume getResume(@RequestParam(name="key") String key) throws DocumentException, IOException {
         Resume resume = resumeRepository.findById(key).orElseThrow();
         resumeService.createPdf(key,resume);

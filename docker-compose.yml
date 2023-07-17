@@ -32,11 +32,11 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
   
-  fastapi: 
-    build: ./backend/pdf
+  pdfreader: 
+    build: ./backend/pdfReader
     command:  uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     volumes:
-      - ./backend/pdf:/app
+      - ./backend/pdfReader:/app
     ports:
       - 8000:8000
     depends_on:

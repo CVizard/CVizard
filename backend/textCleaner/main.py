@@ -1,6 +1,7 @@
 from kafka_connector import connect_kafka_producer, connect_kafka_consumer
 from text_cleaner import anonymize_text, Engine
 import os
+from kafka import KafkaProducer, KafkaConsumer
 
 
 input_topic_name = os.environ['PDF_TEXT_TOPIC']
@@ -9,8 +10,8 @@ bootstrap_servers = [os.environ['BOOTSTRAP_SERVERS']]
 
 
 def main():
-    producer = connect_kafka_producer(bootstrap_servers)
-    consumer = connect_kafka_consumer(bootstrap_servers, input_topic_name)
+    producer = KafkaProducer(bootstrap_servers=bootstrap_servers, api_version=(0, 10))
+    consumer = KafkaConsumer(input_topic_name, bootstrap_servers=bootstrap_servers, api_version=(0, 10))
 
     for msg in consumer:
         text = msg.value.decode('utf-8')

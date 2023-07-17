@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 from pdf_reader import pdf_to_text_tesseract
 from exceptions import KafkaUploadException
 import os
-from kafka import KafkaProducer, KafkaConsumer
+from kafka import KafkaProducer
 
 
 bootstrap_servers = os.environ['BOOTSTRAP_SERVERS']

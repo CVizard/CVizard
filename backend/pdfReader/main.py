@@ -9,9 +9,9 @@ from fastapi import (
     )
 from fastapi.responses import JSONResponse
 from pdf_reader import pdf_to_text_tesseract
-from kafka_connector import connect_kafka_producer
 from exceptions import KafkaUploadException
 import os
+from kafka import KafkaProducer, KafkaConsumer
 
 
 bootstrap_servers = os.environ['BOOTSTRAP_SERVERS']
@@ -19,7 +19,7 @@ topic_name = os.environ['PDF_TEXT_TOPIC']
 
 
 app = FastAPI()
-kafka = connect_kafka_producer(bootstrap_servers)
+kafka = KafkaProducer(bootstrap_servers=bootstrap_servers, api_version=(0, 10))
 
 
 @app.exception_handler(KafkaUploadException)

@@ -99,12 +99,13 @@ services:
     depends_on:
       - kafka
     container_name: pdfcreator
+  
   converter:
     build:
-      context: ./backend/pdfcreator
+      context: ./backend/converter
       dockerfile: Dockerfile
     ports:
       - '8083:8083'
     depends_on:
       - kafka
-    container_name: pdfcreator
+    container_name: converter

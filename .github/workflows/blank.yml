@@ -16,6 +16,24 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
+  build_and_test_pdf_reader:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checking out
+        uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: build and test python
+        working-directory: ./backend/pdfReader
+        run: |
+          docker build -t pdfreader .
+          docker run -d pdfreader pytest testing/
+
   build_and_test_text_cleaner:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -29,7 +47,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       
       - name: build and test python
-        working-directory: ./backend/pdf
+        working-directory: ./backend/textCleaner
         run: |
           docker build -t textcleaner .
           docker run -d textcleaner pytest testing/

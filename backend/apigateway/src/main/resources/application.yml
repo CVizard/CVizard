@@ -14,7 +14,7 @@ spring:
   application:
     name: apigateway
   cloud:
-    gateway:
+    gateway: 
       routes:
         - id: pdf
-          uri: http://localhost:8081
+          uri: http://pdfreader:8081

@@ -8,16 +8,6 @@ services:
     ports:
       - 22181:2181
   
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: 'root'
-      MONGO_INITDB_ROOT_PASSWORD: 'example'
-      MONGO_INITDB_DATABASE: cvizard
-
   kafka:
     image: confluentinc/cp-kafka:latest
     depends_on:
@@ -31,17 +21,26 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-  
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 'example'
+      MONGO_INITDB_DATABASE: cvizard
+
   pdfreader: 
     build: ./backend/pdfReader
-    command:  uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    command:  uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8081
     volumes:
       - ./backend/pdfReader:/app
     ports:
-      - 8000:8000
+      - 8081:8081
     depends_on:
       - kafka
-      - zookeeper
     environment:
       - PDF_TEXT_TOPIC=pdf-text
       - BOOTSTRAP_SERVERS=kafka:29092
@@ -52,10 +51,9 @@ services:
     volumes:
       - ./backend/textCleaner:/app
     ports:
-      - 8000:8001
+      - 8082:8082
     depends_on:
       - kafka
-      - zookeeper
     environment:
         - PDF_TEXT_TOPIC=pdf-text
         - CLEANED_TEXT_TOPIC=cleaned-text
@@ -72,7 +70,7 @@ services:
   #   container_name: frontend
 
 
-  frontend-prod:
+  frontend:
     build:
       context: ./frontend/cvizard
       dockerfile: Dockerfile.prod
@@ -80,14 +78,16 @@ services:
       - 5173:5173
     depends_on:
       - kafka
-    container_name: frontend-prod
+    container_name: frontend
 
   apigateway:
     build: 
       context: ./backend/apigateway
       dockerfile: Dockerfile
     ports:
-      - 8080:8081
+      - 8080:8080
+    depends_on:
+      - kafka
     container_name: apigateway
 
   pdfcreator:
@@ -98,6 +98,7 @@ services:
       - '8084:8084'
     depends_on:
       - kafka
+      - mongo
     container_name: pdfcreator
   
   converter:
@@ -108,4 +109,5 @@ services:
       - '8083:8083'
     depends_on:
       - kafka
+      - mongo
     container_name: converter

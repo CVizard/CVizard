@@ -82,3 +82,11 @@ services:
     depends_on:
       - kafka
     container_name: frontend-prod
+
+  apigateway:
+    build: 
+      context: ./backend/apigateway
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    container_name: apigateway

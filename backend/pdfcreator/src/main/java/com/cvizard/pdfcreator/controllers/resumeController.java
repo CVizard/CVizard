@@ -31,14 +31,15 @@ public class resumeController {
     private final ResourceLoader resourceLoader;
 
     @GetMapping("/templates")
-    public Resume getResume(@RequestParam(name="key") String key) throws DocumentException, IOException {
-        Resume resume = resumeRepository.findById(key).orElseThrow();
-        resumeService.createPdf(key,resume);
-        return resume;
+    public void getResume(@RequestParam(name="key") String key){
+
+        return;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<Resource> getPdfFile(@RequestParam(name= "key") String key) throws IOException {
+    public ResponseEntity<Resource> getPdfFile(@RequestParam(name= "key") String key) throws IOException, DocumentException {
+        Resume resume = resumeRepository.findById(key).orElseThrow();
+        resumeService.createPdf(key,resume);
         File file = new File("resources/"+key+".pdf");
         Resource resource = new FileSystemResource(file);
         return ResponseEntity.ok().body(resource);

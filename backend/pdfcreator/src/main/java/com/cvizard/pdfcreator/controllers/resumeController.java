@@ -22,7 +22,7 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/creator")
 @AllArgsConstructor
 public class resumeController {
     private final ResumeRepository resumeRepository;

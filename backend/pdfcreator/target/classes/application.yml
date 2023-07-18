@@ -1,0 +1,14 @@
+server:
+  port: 8084
+spring:
+  kafka:
+    bootstrap-servers: "kafka:29092"
+  data:
+    mongodb:
+      host: 'localhost'
+      port: 27017
+      username: "root"
+      password: "example"
+      database: "cvizard"
+      authentication-database: "admin"
+      uuid-representation: standard

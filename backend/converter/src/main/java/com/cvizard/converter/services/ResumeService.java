@@ -34,6 +34,7 @@ public class ResumeService {
          resume.setId(key);
          System.out.println(resume);
          resumeRepository.save(resume);
+         System.out.println("zapisane");
          return resume;
      }
      @SneakyThrows

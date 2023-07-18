@@ -30,7 +30,7 @@ async def kafka_exception_handler(request: Request, exc: KafkaUploadException):
     )
 
 
-@app.post('/')
+@app.post('/api/reader')
 async def upload_pdf_file(pdf_file: UploadFile):
     contents = await pdf_file.read()
     text = pdf_to_text_tesseract(contents)

@@ -1,3 +1,7 @@
+settings:
+  path: 
+    pdfreader: "http://pdfreader:8081"
+    pdfcreator: "http://pdfcreator:8084"
 
 server:
   port: 8080
@@ -11,12 +15,30 @@ server:
   #   trust-store-password: 
 
 spring:
+  main:
+    web-application-type: reactive
   application:
     name: apigateway
   cloud:
     gateway: 
       routes:
-        - id: pdf
-          uri: http://pdfreader:8081/
+        - id: pdf_reader_route
+          uri: ${settings.path.pdfreader}
           predicates:
-            - Path=/
+            - Path=/api/reader/**
+        - id: pdf_creator_route
+          uri: ${settings.path.pdfcreator}
+          predicates:
+            - Path=/api/creator/**
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedHeaders: '*'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE

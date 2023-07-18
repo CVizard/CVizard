@@ -13,7 +13,7 @@ export function FileUploader() {
     const formData = new FormData();
     formData.append("pdf_file", file);
     axios
-      .post("http://localhost:8081/api/reader", formData)
+      .post("http://apigateway:8080/api/reader", formData)
       .then((response) => {
         console.log(response);
         setResponseData(response.data.file_id);

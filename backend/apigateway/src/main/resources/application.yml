@@ -5,14 +5,14 @@ settings:
 
 server:
   port: 8080
-  ssl:
-   enabled: true
-   key-alias: 1
-   key-store-password:
-   key-store: classpath:keystore/cvizard.com.p12
-   key-store-type: PKCS12
-   trust-store: classpath:keystore/cvizard.com.p12
-   trust-store-password: 
+  # ssl:
+  #  enabled: true
+  #  key-alias: 1
+  #  key-store-password:
+  #  key-store: classpath:keystore/cvizard.com.p12
+  #  key-store-type: PKCS12
+  #  trust-store: classpath:keystore/cvizard.com.p12
+  #  trust-store-password: 
 
 spring:
   main:

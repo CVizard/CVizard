@@ -7,7 +7,7 @@ server:
   port: 8080
   ssl:
    enabled: true
-   key-alias: cvizard.com
+   key-alias: 1
    key-store-password:
    key-store: classpath:keystore/cvizard.com.p12
    key-store-type: PKCS12

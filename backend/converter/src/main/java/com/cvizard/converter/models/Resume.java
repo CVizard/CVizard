@@ -15,19 +15,19 @@ import java.util.UUID;
 public class Resume {
     @Id
     private String id;
-    @JsonProperty(value = "Work")
+//    @JsonProperty(value = "Work")
     private List<Work> work;
-    @JsonProperty(value = "Education")
+//    @JsonProperty(value = "Education")
     private List<Education> education;
-    @JsonProperty(value = "Certificate")
+//    @JsonProperty(value = "Certificate")
     private List<Certificate> certificates;
-    @JsonProperty(value = "Skill")
+//    @JsonProperty(value = "Skill")
     private List<Skill> skills;
-    @JsonProperty(value = "Language")
+//    @JsonProperty(value = "Language")
     private List<Language> languages;
-    @JsonProperty(value = "Project")
+//    @JsonProperty(value = "Project")
     private List<Project> projects;
-    @JsonProperty(value = "Interest")
+//    @JsonProperty(value = "Interest")
     private List<Interest> interests;
     
     @NoArgsConstructor

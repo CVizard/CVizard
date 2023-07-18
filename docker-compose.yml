@@ -76,6 +76,7 @@ services:
       dockerfile: Dockerfile.prod
     ports:
       - 443:443
+      - 80:80
     depends_on:
       - kafka
     container_name: frontend

@@ -3,6 +3,7 @@ import axios from "axios";
 
 export function FileUploader() {
   const [file, setFile] = useState(null);
+  const [responseData, setResponseData] = useState(null);
 
   const onFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -12,22 +13,15 @@ export function FileUploader() {
     const formData = new FormData();
     formData.append("pdf_file", file);
     axios
-      .post("https://localhost:8080/api/reader", formData)
+      .post("http://localhost:8081/api/reader", formData)
       .then((response) => {
         console.log(response);
+        setResponseData(response.data.file_id);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
     formData.append("pdf_file", file);
-    axios
-      .post("https://apigateway:8080/api/reader", formData)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
   };
 
   return (
@@ -36,6 +30,12 @@ export function FileUploader() {
         <input type="file" onChange={onFileChange} accept="application/pdf" />
         <button className="bg-blue-400 hover:bg-blue-300 py-2 px-2 rounded" onClick={onFileUpload}>Upload!</button>
       </div>
+      {responseData && ( // Render the response data if available
+        <div>
+          <h2>File ID:</h2>
+          <pre>{JSON.stringify(responseData, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 }

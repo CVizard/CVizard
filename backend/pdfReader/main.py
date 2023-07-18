@@ -11,6 +11,7 @@ from fastapi.responses import JSONResponse
 from pdf_reader import pdf_to_text_tesseract
 from exceptions import KafkaUploadException
 import os
+from fastapi.middleware.cors import CORSMiddleware
 from kafka import KafkaProducer
 
 
@@ -19,6 +20,15 @@ topic_name = os.environ['PDF_TEXT_TOPIC']
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 kafka = KafkaProducer(bootstrap_servers=bootstrap_servers, api_version=(0, 10))
 
 

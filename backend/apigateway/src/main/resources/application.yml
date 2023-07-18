@@ -1,7 +1,7 @@
 settings:
   path: 
-    pdfreader: "https://pdfreader:8081"
-    pdfcreator: "https://pdfcreator:8084"
+    pdfreader: "http://pdfreader:8081"
+    pdfcreator: "http://pdfcreator:8084"
 
 server:
   port: 8080

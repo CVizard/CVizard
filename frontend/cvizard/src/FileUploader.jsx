@@ -12,7 +12,16 @@ export function FileUploader() {
     const formData = new FormData();
     formData.append("pdf_file", file);
     axios
-      .post("http://apigateway:8080/api/reader", formData)
+      .post("https://localhost:8080/api/reader", formData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+    formData.append("pdf_file", file);
+    axios
+      .post("https://apigateway:8080/api/reader", formData)
       .then((response) => {
         console.log(response);
       })

@@ -14,8 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class KafkaListeners {
     private final ResumeService resumeService;
-//    @KafkaListener(topics = "${settings.kafka.topics.cleaned-text}", groupId = "ooo")
-    @KafkaListener(topics = "cleaned-text", groupId = "ooo")
+    @KafkaListener(topics = "${settings.kafka.topics.cleaned-text}", groupId = "ooo")
     void listener(@Payload String data, @Header(KafkaHeaders.RECEIVED_KEY) String key){
         resumeService.resumeConverter(data, key);
     }

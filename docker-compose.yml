@@ -1,4 +1,4 @@
-version: "2.19.1"
+version: '2.19.1'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -8,7 +8,7 @@ services:
     ports:
       - 22181:2181
     container_name: zookeeper
-
+  
   kafka:
     image: confluentinc/cp-kafka:latest
     depends_on:
@@ -30,14 +30,14 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "root"
-      MONGO_INITDB_ROOT_PASSWORD: "example"
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 'example'
       MONGO_INITDB_DATABASE: cvizard
     container_name: mongo
 
-  pdfreader:
+  pdfreader: 
     build: ./backend/pdfReader
-    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8081
+    command:  uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8081
     volumes:
       - ./backend/pdfReader:/app
     ports:
@@ -49,9 +49,9 @@ services:
       - BOOTSTRAP_SERVERS=kafka:29092
     container_name: pdfreader
 
-  textcleaner:
+  textcleaner: 
     build: ./backend/textCleaner
-    command: python3 main.py
+    command:  python3 main.py
     volumes:
       - ./backend/textCleaner:/app
     ports:
@@ -59,9 +59,9 @@ services:
     depends_on:
       - kafka
     environment:
-      - PDF_TEXT_TOPIC=pdf-text
-      - CLEANED_TEXT_TOPIC=cleaned-text
-      - BOOTSTRAP_SERVERS=kafka:29092
+        - PDF_TEXT_TOPIC=pdf-text
+        - CLEANED_TEXT_TOPIC=cleaned-text
+        - BOOTSTRAP_SERVERS=kafka:29092
     container_name: textcleaner
 
   # frontend:
@@ -73,6 +73,7 @@ services:
   #   depends_on:
   #     - kafka
   #   container_name: frontend
+
 
   frontend:
     build:
@@ -86,7 +87,7 @@ services:
     container_name: frontend
 
   apigateway:
-    build:
+    build: 
       context: ./backend/apigateway
       dockerfile: Dockerfile
     ports:
@@ -100,24 +101,19 @@ services:
       context: ./backend/pdfcreator
       dockerfile: Dockerfile
     ports:
-      - "8084:8084"
+      - '8084:8084'
     depends_on:
       - kafka
       - mongo
     container_name: pdfcreator
-
+  
   converter:
     build:
       context: ./backend/converter
       dockerfile: Dockerfile
     ports:
-      - "8083:8083"
+      - '8083:8083'
     depends_on:
       - kafka
       - mongo
     container_name: converter
-    environment:
-      - SETTINGS_KAFKA_TOPIC_CLEANED-TEXT=${TOPIC_CLEANED_TEXT}
-      - SETTINGS_GPT-API-KEY=${GPT_API_KEY}
-      - SPRING_KAFKA_BOOTSTRAP-SERVERS=kafka:29092
-      - SPRING_DATA_MONGODB_HOST=mongo

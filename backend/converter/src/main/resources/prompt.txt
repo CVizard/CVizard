@@ -1,0 +1,56 @@
+you have here plain text from cv: “”,
+analyse this and return me only this JSON template:
+{
+"work": {
+[
+"name": "",
+"position": "",
+"startDate": "",
+"endDate": "",
+"summary": "",
+]
+},
+"education": {
+[
+"institution": "",
+"area": "",
+"studyType": "",
+"startDate": "",
+"endDate": ""
+]
+},
+"certificate": {
+[
+"name": "",
+"date": "",
+"issuer": ""
+]
+},
+"skill": {
+[
+"name": "",
+"level": "",
+"keywords": []
+]
+},
+"language": {
+[
+"language": "",
+"level": ""
+]
+},
+"project": {
+[
+"name": "",
+"startDate": "",
+"endDate": "",
+"summary": ""
+]
+},
+"interest": {
+[
+"name": "",
+"keywords": []
+]
+}
+} with approximately parsed data from the given text

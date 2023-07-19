@@ -77,7 +77,7 @@ services:
   frontend:
     build:
       context: ./frontend/cvizard
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.dev
     ports:
       - 443:443
       - 80:80
@@ -91,6 +91,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+    # volumes:
+      # - ./backend/apigateway/cvizard.com.p12 app/src/main/resources/cvizard.com.p12 
     depends_on:
       - kafka
     container_name: apigateway

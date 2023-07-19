@@ -9,10 +9,6 @@ COPY package.json package.json
 
 RUN npm install
 
-RUN npm install axios
-
-RUN npm install react-pdf
-
 COPY . . 
 
 CMD ["npm", "run", "dev"]

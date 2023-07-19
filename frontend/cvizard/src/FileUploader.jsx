@@ -36,12 +36,6 @@ export function FileUploader() {
           Upload!
         </button>
       </div>
-      {responseData && ( // Render the response data if available
-        <div>
-          <h2>File ID:</h2>
-          <pre>{JSON.stringify(responseData, null, 2)}</pre>
-        </div>
-      )}
     </div>
   );
 }

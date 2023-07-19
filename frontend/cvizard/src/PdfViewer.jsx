@@ -29,7 +29,7 @@ export const PdfViewer = () => {
     axios
       .get("http://localhost:8080/api/creator", {
         params: {
-          key: fileId,
+          key: localStorage.getItem("file_id"),
         },
         responseType: "blob", // Important
       })
@@ -42,18 +42,13 @@ export const PdfViewer = () => {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={fileId}
-        onChange={(event) => setFileId(event.target.value)}
-      />
-      <button onClick={downloadPdf}>Fetch PDF</button>
-      <div>
-        <Document file={file}>
-          <Page pageNumber={1} />
-        </Document>
-      </div>
+    <div className="flex justify-center items-center">
+      <button
+        className="text-white border-solid border-8 w-max flex items-center bg-blue-500 px-6 py-6 border-blue-400 font-thin mt-10"
+        onClick={downloadPdf}
+      >
+        Download PDF
+      </button>
     </div>
   );
 };

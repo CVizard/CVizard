@@ -17,6 +17,7 @@ export function FileUploader() {
       .then((response) => {
         console.log(response);
         setResponseData(response.data.file_id);
+        localStorage.setItem("file_id", response.data.file_id);
       })
       .catch((error) => {
         console.error("There was an error!", error);
